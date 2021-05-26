@@ -47,14 +47,15 @@ class _MainViewState extends State<MainView> {
 
   @override
   void initState() {
+    super.initState();
     widget.model.loadPoses();
+
     controller = AutoScrollController(
       viewportBoundaryGetter: () =>
           Rect.fromLTRB(0, 0, 0, MediaQuery.of(context).padding.bottom),
       axis: Axis.horizontal,
       suggestedRowHeight: 200,
     );
-    super.initState();
   }
 
   @override

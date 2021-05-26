@@ -16,8 +16,8 @@ Future<void> initialize() async {
   await Hive.openBox<Pose>('poses');
 }
 
-void main() {
-  initialize();
+void main() async {
+  await initialize();
   runApp(MyApp());
 }
 
