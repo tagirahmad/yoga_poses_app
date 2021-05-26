@@ -45,6 +45,11 @@ class _MainViewState extends State<MainView> {
   PageController _savedImagesPageController = PageController();
   late AutoScrollController controller = AutoScrollController();
 
+  final snackBar = SnackBar(
+    content: Text('Pose added'),
+    duration: Duration(milliseconds: 500),
+  );
+
   @override
   void initState() {
     super.initState();
@@ -96,31 +101,25 @@ class _MainViewState extends State<MainView> {
                             child: Container(
                               height: previewHeight,
                               padding: EdgeInsets.only(bottom: 15.0),
-                              child: ListView.builder(
-                                controller: controller,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: widget.model.poses.length,
-                                itemBuilder: (context, i) {
-                                  return AutoScrollTag(
-                                    key: ValueKey(i),
-                                    controller: controller,
-                                    index: i,
-                                    child: GestureDetector(
-                                      onTap: () => _onPreviewImageTap(
-                                        constraints: constraints,
-                                        index: i,
-                                        previewWidth: previewWidth,
-                                      ),
-                                      child: PreviewImage(
-                                        imageHeight: previewHeight,
-                                        imagePath:
-                                            widget.model.poses[i].preview,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                              child: ListView.separated(
+                                  controller: controller,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: widget.model.poses.length,
+                                  separatorBuilder:
+                                      (BuildContext context, int index) {
+                                    return const SizedBox(
+                                      width: 5.0,
+                                    );
+                                  },
+                                  itemBuilder: (context, i) {
+                                    return _buildHorizontalPosesList(
+                                      i,
+                                      constraints,
+                                      previewWidth,
+                                      previewHeight,
+                                    );
+                                  }),
                             ),
                           )
                         else
@@ -153,36 +152,35 @@ class _MainViewState extends State<MainView> {
                                     (orientation == Orientation.portrait)
                                         ? 4
                                         : 7,
+                                mainAxisSpacing: 5.0,
+                                crossAxisSpacing: 5.0,
                               ),
                               itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 5.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      showDialog<void>(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          _savedImagesPageController =
-                                              PageController(
-                                            initialPage: index,
-                                          );
-                                          return Center(
-                                            child: _renderSavedZoomedImages(
-                                              constraints,
-                                              previewWidth,
-                                              widget.model.savedPoses,
-                                              _savedImagesPageController,
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: PreviewImage(
-                                      imageHeight: previewHeight,
-                                      imageWidth: previewWidth,
-                                      imagePath: widget
-                                          .model.savedPoses[index].preview,
-                                    ),
+                                return GestureDetector(
+                                  onTap: () {
+                                    showDialog<void>(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        _savedImagesPageController =
+                                            PageController(
+                                          initialPage: index,
+                                        );
+                                        return Center(
+                                          child: _renderSavedZoomedImages(
+                                            constraints,
+                                            previewWidth,
+                                            widget.model.savedPoses,
+                                            _savedImagesPageController,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: PreviewImage(
+                                    imageHeight: previewHeight,
+                                    imageWidth: previewWidth,
+                                    imagePath:
+                                        widget.model.savedPoses[index].preview,
                                   ),
                                 );
                               },
@@ -193,6 +191,30 @@ class _MainViewState extends State<MainView> {
                     );
                   },
                 ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHorizontalPosesList(
+    int i,
+    BoxConstraints constraints,
+    double previewWidth,
+    double previewHeight,
+  ) {
+    return AutoScrollTag(
+      key: ValueKey(i),
+      controller: controller,
+      index: i,
+      child: GestureDetector(
+        onTap: () => _onPreviewImageTap(
+          constraints: constraints,
+          index: i,
+          previewWidth: previewWidth,
+        ),
+        child: PreviewImage(
+          imageHeight: previewHeight,
+          imagePath: widget.model.poses[i].preview,
         ),
       ),
     );
@@ -279,7 +301,7 @@ class _MainViewState extends State<MainView> {
           widget.model.savePose(
             widget.model.poses[index],
           );
-          final snackBar = SnackBar(content: Text('Pose saved'));
+
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         },
         child: Image.asset(poses[index].zoomed),

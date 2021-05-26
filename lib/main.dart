@@ -13,7 +13,7 @@ Future<void> initialize() async {
   );
   await Hive.initFlutter();
   Hive.registerAdapter<Pose>(PoseAdapter());
-  await Hive.openBox<Pose>('poses');
+  await Hive.openLazyBox<Pose>('poses');
 }
 
 void main() async {

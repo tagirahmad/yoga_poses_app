@@ -15,7 +15,6 @@ class PreviewImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 5.0),
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
