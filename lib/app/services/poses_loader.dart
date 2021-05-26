@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class PosesLoader {
-  late Map<String, dynamic> assets;
+  late Map<String, dynamic> _assets;
 
   Future<Map<String, dynamic>> _loadAssets() async {
     var myAssets = await rootBundle.loadString('AssetManifest.json');
@@ -12,8 +12,8 @@ class PosesLoader {
   }
 
   Future<List<String>> loadPreviewImages() async {
-    assets = await _loadAssets();
-    var previewImages = assets.keys
+    _assets = await _loadAssets();
+    var previewImages = _assets.keys
         .where((element) =>
             element.startsWith('assets/poses/previews') &&
             element.contains('.png'))
@@ -25,8 +25,8 @@ class PosesLoader {
   }
 
   Future<List<String>> loadZoomedImages() async {
-    assets = await _loadAssets();
-    var zoomedImages = assets.keys
+    _assets = await _loadAssets();
+    var zoomedImages = _assets.keys
         .where((element) =>
             element.startsWith('assets/poses/zoomed') &&
             element.contains('~ipad'))
