@@ -25,7 +25,7 @@ void main() async {
     late HivePosesService hivePosesService;
 
     setUp(() {
-      hivePosesService = HivePosesService(Hive.box<Pose>('poses'));
+      hivePosesService = HivePosesService(posesBox: Hive.box<Pose>('poses'));
     });
 
     test('HivePosesService should get non of poses', () async {
@@ -38,7 +38,7 @@ void main() async {
     late HivePosesService hivePosesService;
 
     setUp(() {
-      hivePosesService = HivePosesService(Hive.box<Pose>('poses'));
+      hivePosesService = HivePosesService(posesBox: Hive.box<Pose>('poses'));
       hivePosesService.posesBox.addAll([
         Pose(preview: 'preview1', zoomed: 'zoomed1'),
         Pose(preview: 'preview1', zoomed: 'zoomed1'),
@@ -56,7 +56,7 @@ void main() async {
     late HivePosesService hivePosesService;
 
     setUp(() {
-      hivePosesService = HivePosesService(Hive.box<Pose>('poses'));
+      hivePosesService = HivePosesService(posesBox: Hive.box<Pose>('poses'));
     });
 
     test('Put a pose with putPose()', () async {

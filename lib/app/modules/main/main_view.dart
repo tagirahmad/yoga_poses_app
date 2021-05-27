@@ -25,7 +25,7 @@ class MainView extends StatefulWidget {
         builder: (_, isLoading, __) => ChangeNotifierProvider<PosesChangeModel>(
           create: (_) => PosesChangeModel(
             isLoading: isLoading,
-            posesDb: HivePosesService(_pose),
+            posesDb: HivePosesService(posesBox: _pose),
             posesLoader: PosesLoader(),
           ),
           child: Consumer<PosesChangeModel>(
