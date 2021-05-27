@@ -26,4 +26,9 @@ class HivePosesService implements PosesDb {
   Future<void> putPose(Pose pose) async {
     _posesBox.add(pose);
   }
+
+  @override
+  Future<void> deletePose(int index) async {
+    await _posesBox.deleteAt(index);
+  }
 }

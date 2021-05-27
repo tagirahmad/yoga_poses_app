@@ -48,8 +48,13 @@ class _MainViewState extends State<MainView> {
   PageController _savedImagesPageController = PageController();
   late AutoScrollController controller = AutoScrollController();
 
-  final snackBar = SnackBar(
+  final _addSnackBar = SnackBar(
     content: Text('Pose added'),
+    duration: Duration(milliseconds: 500),
+  );
+
+  final _removeSnackBar = SnackBar(
+    content: Text('Pose removed'),
     duration: Duration(milliseconds: 500),
   );
 
@@ -304,8 +309,7 @@ class _MainViewState extends State<MainView> {
           widget.model.savePose(
             widget.model.poses[index],
           );
-
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(_addSnackBar);
         },
         child: Image.asset(poses[index].zoomed),
       ),
@@ -335,7 +339,13 @@ class _MainViewState extends State<MainView> {
           ),
         );
       },
-      child: Image.asset(poses[index].zoomed),
+      child: GestureDetector(
+          onDoubleTap: () {
+            widget.model.deletePose(index);
+            ScaffoldMessenger.of(context).showSnackBar(_removeSnackBar);
+            Navigator.pop(context);
+          },
+          child: Image.asset(poses[index].zoomed)),
     );
   }
 

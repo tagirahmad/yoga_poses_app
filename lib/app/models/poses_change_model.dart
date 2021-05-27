@@ -52,4 +52,12 @@ class PosesChangeModel extends ChangeNotifier {
     posesDb.putPose(pose);
     notifyListeners();
   }
+
+  void deletePose(int index) {
+    var poseList = [...savedPoses];
+    poseList.removeAt(index);
+    savedPoses = List.from(poseList);
+    posesDb.deletePose(index);
+    notifyListeners();
+  }
 }
