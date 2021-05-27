@@ -3,6 +3,14 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class PosesLoader {
+  static final PosesLoader _singleton = PosesLoader._internal();
+
+  factory PosesLoader() {
+    return _singleton;
+  }
+
+  PosesLoader._internal();
+
   late Map<String, dynamic> _assets;
 
   Future<Map<String, dynamic>> _loadAssets() async {
