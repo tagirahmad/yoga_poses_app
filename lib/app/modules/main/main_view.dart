@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:teenytinyom/app/constants/dimensions.dart';
@@ -16,13 +17,15 @@ class MainView extends StatefulWidget {
   final PosesChangeModel model;
 
   static Widget create(BuildContext context) {
+    final _pose = Hive.box<Pose>('poses');
+
     return ChangeNotifierProvider<ValueNotifier<bool>>(
       create: (_) => ValueNotifier<bool>(true),
       child: Consumer<ValueNotifier<bool>>(
         builder: (_, isLoading, __) => ChangeNotifierProvider<PosesChangeModel>(
           create: (_) => PosesChangeModel(
             isLoading: isLoading,
-            posesDb: HivePosesService(),
+            posesDb: HivePosesService(_pose),
             posesLoader: PosesLoader(),
           ),
           child: Consumer<PosesChangeModel>(
