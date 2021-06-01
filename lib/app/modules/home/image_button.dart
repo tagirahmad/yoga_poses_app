@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teenytinyom/app/widgets/custom_button.dart';
+import 'package:teenyTinyOm/app/widgets/custom_button.dart';
 
 class ImageButton extends CustomButton {
   ImageButton({

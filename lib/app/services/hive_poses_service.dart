@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:teenytinyom/app/models/pose.dart';
-import 'package:teenytinyom/app/services/poses_db.dart';
+import 'package:teenyTinyOm/app/models/pose.dart';
+import 'package:teenyTinyOm/app/services/poses_db.dart';
 
 class HivePosesService implements PosesDb {
   static final HivePosesService _singleton = HivePosesService._internal();

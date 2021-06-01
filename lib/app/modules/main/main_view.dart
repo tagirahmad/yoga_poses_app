@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:teenytinyom/app/constants/dimensions.dart';
-import 'package:teenytinyom/app/models/pose.dart';
-import 'package:teenytinyom/app/models/poses_change_model.dart';
-import 'package:teenytinyom/app/modules/main/preview_image.dart';
-import 'package:teenytinyom/app/services/hive_poses_service.dart';
-import 'package:teenytinyom/app/services/poses_loader.dart';
+import 'package:teenyTinyOm/app/constants/dimensions.dart';
+import 'package:teenyTinyOm/app/models/pose.dart';
+import 'package:teenyTinyOm/app/models/poses_change_model.dart';
+import 'package:teenyTinyOm/app/modules/main/preview_image.dart';
+import 'package:teenyTinyOm/app/services/hive_poses_service.dart';
+import 'package:teenyTinyOm/app/services/poses_loader.dart';
 
 class MainView extends StatefulWidget {
   MainView({required this.isLoading, required this.model});

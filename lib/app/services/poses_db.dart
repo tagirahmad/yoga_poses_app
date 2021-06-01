@@ -1,4 +1,4 @@
-import 'package:teenytinyom/app/models/pose.dart';
+import 'package:teenyTinyOm/app/models/pose.dart';
 
 abstract class PosesDb {
   Future<void> putPose(Pose pose);

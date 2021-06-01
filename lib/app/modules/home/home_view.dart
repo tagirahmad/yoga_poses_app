@@ -1,12 +1,12 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:teenytinyom/app/constants/app_colors.dart';
-import 'package:teenytinyom/app/constants/dimensions.dart';
-import 'package:teenytinyom/app/constants/paths.dart';
-import 'package:teenytinyom/app/modules/home/home_menu_button.dart';
-import 'package:teenytinyom/app/modules/main/main_view.dart';
-import 'package:teenytinyom/app/services/url_launcher_service.dart';
+import 'package:teenyTinyOm/app/constants/app_colors.dart';
+import 'package:teenyTinyOm/app/constants/dimensions.dart';
+import 'package:teenyTinyOm/app/constants/paths.dart';
+import 'package:teenyTinyOm/app/modules/home/home_menu_button.dart';
+import 'package:teenyTinyOm/app/modules/main/main_view.dart';
+import 'package:teenyTinyOm/app/services/url_launcher_service.dart';
 
 import 'image_button.dart';
 
@@ -52,8 +52,7 @@ class HomeView extends StatelessWidget {
                   ),
                   Flexible(
                     child: HomeMenuButton(
-                      onTap: () =>
-                          UrlLauncherService.launchURL(Paths.WEBSITE),
+                      onTap: () => UrlLauncherService.launchURL(Paths.WEBSITE),
                       buttonText: 'Visit website',
                       style: Theme.of(context).textTheme.headline5!.copyWith(
                             fontWeight: FontWeight.bold,

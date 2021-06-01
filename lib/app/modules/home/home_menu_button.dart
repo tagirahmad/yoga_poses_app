@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teenytinyom/app/constants/app_colors.dart';
-import 'package:teenytinyom/app/constants/dimensions.dart';
-import 'package:teenytinyom/app/widgets/custom_button.dart';
+import 'package:teenyTinyOm/app/constants/app_colors.dart';
+import 'package:teenyTinyOm/app/constants/dimensions.dart';
+import 'package:teenyTinyOm/app/widgets/custom_button.dart';
 
 class HomeMenuButton extends CustomButton {
   final String buttonText;

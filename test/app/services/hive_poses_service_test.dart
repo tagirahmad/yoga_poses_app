@@ -1,13 +1,14 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
-import 'package:teenytinyom/app/models/pose.dart';
-import 'package:teenytinyom/app/services/hive_poses_service.dart';
+import 'package:teenyTinyOm/app/models/pose.dart';
+import 'package:teenyTinyOm/app/services/hive_poses_service.dart';
+
 
 Future<void> initHive() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  TestWidgetsFlutterBinding.ensureInitialized();
 
   var path = Directory.current.path;
   if (!Hive.isAdapterRegistered(0)) {

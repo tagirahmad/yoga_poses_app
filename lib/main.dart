@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:teenytinyom/app/modules/home/home_view.dart';
+import 'package:teenyTinyOm/app/modules/home/home_view.dart';
 
 import 'app/models/pose.dart';
 

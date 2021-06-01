@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
-import 'package:teenytinyom/app/models/pose.dart';
-import 'package:teenytinyom/app/services/poses_db.dart';
-import 'package:teenytinyom/app/services/poses_loader.dart';
+import 'package:teenyTinyOm/app/models/pose.dart';
+import 'package:teenyTinyOm/app/services/poses_db.dart';
+import 'package:teenyTinyOm/app/services/poses_loader.dart';
 
 class PosesChangeModel extends ChangeNotifier {
   PosesChangeModel({
