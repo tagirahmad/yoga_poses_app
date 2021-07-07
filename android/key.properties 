@@ -1,0 +1,4 @@
+storePassword=r63*CA
+keyPassword=r63*CA
+keyAlias=upload
+storeFile=<location of the key store file, such as /Users/<user name>/upload-keystore.jks>

@@ -1,4 +1,4 @@
-package com.example.teenytinyom
+package org.magentamedia.teenytinyOm
 
 import io.flutter.embedding.android.FlutterActivity
 
