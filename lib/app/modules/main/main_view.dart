@@ -16,6 +16,9 @@ class MainView extends StatefulWidget {
   final bool isLoading;
   final PosesChangeModel model;
 
+  get allPoses => model.poses;
+  get savedPoses => model.savedPoses;
+
   static Widget create(BuildContext context) {
     final _pose = Hive.box<Pose>('poses');
 
@@ -99,35 +102,35 @@ class _MainViewState extends State<MainView> {
               : LayoutBuilder(
                   builder: (context, constraints) {
                     final previewHeight = constraints.maxHeight * 0.15;
-                    // final previewHeight = constraints.maxHeight * 0.25;
                     final previewWidth = constraints.maxWidth * 0.25;
 
                     return Column(
                       children: [
-                        if (widget.model.poses.length > 0)
+                        if (widget.allPoses.length > 0)
                           CupertinoScrollbar(
                             child: Container(
                               height: previewHeight,
                               padding: EdgeInsets.only(bottom: 15.0),
                               child: ListView.separated(
-                                  controller: controller,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: widget.model.poses.length,
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return const SizedBox(
-                                      width: 5.0,
-                                    );
-                                  },
-                                  itemBuilder: (context, i) {
-                                    return _buildHorizontalPosesList(
-                                      i,
-                                      constraints,
-                                      previewWidth,
-                                      previewHeight,
-                                    );
-                                  }),
+                                controller: controller,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.allPoses.length,
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return const SizedBox(
+                                    width: 5.0,
+                                  );
+                                },
+                                itemBuilder: (context, i) {
+                                  return _buildHorizontalPosesList(
+                                    i,
+                                    constraints,
+                                    previewWidth,
+                                    previewHeight,
+                                  );
+                                },
+                              ),
                             ),
                           )
                         else
@@ -153,7 +156,7 @@ class _MainViewState extends State<MainView> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: GridView.builder(
-                              itemCount: widget.model.savedPoses.length,
+                              itemCount: widget.savedPoses.length,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount:
@@ -177,7 +180,7 @@ class _MainViewState extends State<MainView> {
                                           child: _renderSavedZoomedImages(
                                             constraints,
                                             previewWidth,
-                                            widget.model.savedPoses,
+                                            widget.savedPoses,
                                             _savedImagesPageController,
                                           ),
                                         );
@@ -188,7 +191,7 @@ class _MainViewState extends State<MainView> {
                                     imageHeight: previewHeight,
                                     imageWidth: previewWidth,
                                     imagePath:
-                                        widget.model.savedPoses[index].preview,
+                                        widget.savedPoses[index].preview,
                                   ),
                                 );
                               },
@@ -222,7 +225,7 @@ class _MainViewState extends State<MainView> {
         ),
         child: PreviewImage(
           imageHeight: previewHeight,
-          imagePath: widget.model.poses[i].preview,
+          imagePath: widget.allPoses[i].preview,
         ),
       ),
     );
@@ -307,7 +310,7 @@ class _MainViewState extends State<MainView> {
       child: GestureDetector(
         onDoubleTap: () {
           widget.model.savePose(
-            widget.model.poses[index],
+            widget.allPoses[index],
           );
           ScaffoldMessenger.of(context).showSnackBar(_addSnackBar);
         },
@@ -366,7 +369,7 @@ class _MainViewState extends State<MainView> {
           child: _renderZoomedImages(
             constraints,
             previewWidth,
-            widget.model.poses,
+            widget.allPoses,
             _pageController,
           ),
         );
